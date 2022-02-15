@@ -8,10 +8,22 @@
 
 <script type="text/javascript">
     function hallo(){
-        const url = "/?navn=" + $("#navn").val();
+        const url = "http://localhost:8080/navn?navn=" + $("#navn").val();
 
         $.get(url, function (data){
             $("#hallo").html(data);
+        });
+    }
+
+    function hentData(){
+        const kunde = {
+            navn: $("#navn").val(),
+            adresse: $("#adresse").val()
+        };
+
+        $.get("/kunde", kunde, function (kunde){
+            let ut = "navn: " + kunde.navn + " Adresse: " + kunde.adresse;
+            $("#utskrift").html(ut);
         });
     }
 </script>
@@ -19,7 +31,14 @@
 </head>
 <body>
 
-Skriv inn ditt navn: <input type="text" id="navn"/>
+<h3>Ny Kunde</h3>
+Kunde: <input type="text" id="navn"> <br/>
+Adresse: <input type="text" id="adresse"> <br/>
+
+<button onclick="hentData();">Legg inn kunde</button>
+<div id="utskrift"></div>
+
+Skriv inn ditt navn: <input type="text" id="navn1"/>
 
 <button onclick="hallo()">Trykk meg</button>
 
