@@ -25,5 +25,6 @@ public class kunde {
         public String getAdresse(){
             return adresse;
         }
+        //Kommentar
 
 }
